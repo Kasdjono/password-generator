@@ -8,7 +8,7 @@ var specialCase = ["!", "?", "@", "#", "$", "%", "^", "&", "*"];
 var numberCase = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 var charSelection = [];
 var finalSelection = [];
-var finalString = "";
+//var finalString = "";
 
 // Write password to the #password input
 function writePassword() {
@@ -41,32 +41,40 @@ function writePassword() {
       console.log(result);
 
       // concatinate  the  arrays together in order to create the final array
-      if (charType[i] == "lower case" && result) {
-        charSelection = [].concat(lowerCase);
+      if (charType[i] === "lower case" && result) {
+        charSelection = charSelection.concat(lowerCase);
         console.log(charSelection);
-        finalSelection = [].concat(lowerCase[Math.floor(Math.random() * lowerCase.length)]);
+        finalSelection = finalSelection.concat(lowerCase[Math.floor(Math.random() * lowerCase.length)]);
         console.log(finalSelection);
+
       } 
-        else if (charType[i] == "upper case" && result) {
+        else if (charType[i] === "upper case" && result) {
         charSelection = charSelection.concat(upperCase);
         console.log(charSelection);
         finalSelection = finalSelection.concat(upperCase[Math.floor(Math.random() * upperCase.length)]);
         console.log(finalSelection);
 
       }
-        else if (charType[i] == "number case" && result) {
+        else if (charType[i] === "number case" && result) {
         charSelection = charSelection.concat(numberCase);
         console.log(charSelection);
         finalSelection = finalSelection.concat(numberCase[Math.floor(Math.random() * numberCase.length)]);
         console.log(finalSelection);
       }
 
-        else if (charType[i] == "specialc case" && result) {
+        else if (charType[i] === "specialc case" && result) {
         charSelection = charSelection.concat(specialCase);
         console.log(charSelection);
         finalSelection = finalSelection.concat(specialCase[Math.floor(Math.random() * specialCase.length)]);
         console.log(finalSelection);
       }
+
+        else if (finalSelection.length === 0 && i === 3) {
+        alert("Please select at least one of the characters for your password.");
+        generatePassword();
+      }
+
+      console.log(finalSelection);
 
     }
 
@@ -77,7 +85,7 @@ function writePassword() {
     }
     
     finalSelection = finalSelection.join("");
-    return finalSelection
+    return finalSelection;
     
   }
   passwordText.value = password;
