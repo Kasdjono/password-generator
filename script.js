@@ -21,6 +21,8 @@ function writePassword() {
     // Prompt the user to determine how many character are neede for the password
     var passLength = window.prompt("How many characters are needed for the passwrod (8-128)");
     console.log(passLength);
+    passLength = parseInt(passLength);
+    console.log(passLength);
 
     while (passLength < 8 || passLength > 128) {
       var passLength = window.prompt("Remember, the password must be (8-128)");
@@ -31,7 +33,7 @@ function writePassword() {
     /*  window ask the user what type of characters are needed and use resulting 
         boolean values to merge the character arrays to our final array that will 
         have values randomly selected from  */
-    var charType = ["lower case", "upper case", "number case", "specialc ase"];
+    var charType = ["lower case", "upper case", "number case", "specialc case"];
     for (var i = 0; i < charType.length; i++) {
 
       var result
@@ -55,60 +57,32 @@ function writePassword() {
         else if (charType[i] == "number case" && result) {
         charSelection = charSelection.concat(numberCase);
         console.log(charSelection);
-        finalSelection = finalSelection.concat(upperCase[Math.floor(Math.random() * numberCase.length)]);
+        finalSelection = finalSelection.concat(numberCase[Math.floor(Math.random() * numberCase.length)]);
         console.log(finalSelection);
       }
 
         else if (charType[i] == "specialc case" && result) {
         charSelection = charSelection.concat(specialCase);
         console.log(charSelection);
-        finalSelection = finalSelection.concat(upperCase[Math.floor(Math.random() * specialCase.length)]);
+        finalSelection = finalSelection.concat(specialCase[Math.floor(Math.random() * specialCase.length)]);
         console.log(finalSelection);
       }
 
     }
 
-    finalString = finalSelection.toString();
-    console.log(finalString);
-
     // This will create the password and include the garenteed characters
-    // for (let index = 0; index < passLength - finalSelection.length ; index++) {
-    //   const element = array[index];
-
-
-      
-
-      
-
+    for (var index = finalSelection.length ; index < (passLength); index++) {
+      finalSelection = finalSelection.concat(charSelection[Math.floor(Math.random() * charSelection.length)]);
+        console.log(finalSelection);
     }
-    // var
-    // if (charSelection.length > 0) {
-    //     return charSelection[Math.floor(Math.random() * charSelection.length)];
-    //   }
+    
+    return finalSelection.toString()
 
               // ------ "return finalString" ------ //
-
-  
-
+  }
   passwordText.value = password;
 
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
