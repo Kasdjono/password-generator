@@ -76,9 +76,9 @@ function writePassword() {
         console.log(finalSelection);
     }
     
-    return finalSelection.toString()
-
-              // ------ "return finalString" ------ //
+    finalSelection = finalSelection.join("");
+    return finalSelection
+    
   }
   passwordText.value = password;
 
