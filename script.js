@@ -7,6 +7,8 @@ var upperCase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"
 var specialCase = ["!", "?", "@", "#", "$", "%", "^", "&", "*"];
 var numberCase = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 var charSelection = [];
+var finalSelection = [];
+var finalString = "";
 
 // Write password to the #password input
 function writePassword() {
@@ -25,10 +27,10 @@ function writePassword() {
       console.log(passLength);
     }
 
-    /*window ask the user what type of characters are needed and use resulting 
-      boolean values to merge the character arrays to our final array that will 
-      have values randomly selected from */
 
+    /*  window ask the user what type of characters are needed and use resulting 
+        boolean values to merge the character arrays to our final array that will 
+        have values randomly selected from  */
     var charType = ["lower case", "upper case", "number case", "specialc ase"];
     for (var i = 0; i < charType.length; i++) {
 
@@ -37,29 +39,56 @@ function writePassword() {
       console.log(result);
 
       // concatinate  the  arrays together in order to create the final array
-      if (charType[i]=="lower case" && result) {
+      if (charType[i] == "lower case" && result) {
         charSelection = [].concat(lowerCase);
         console.log(charSelection);
-
-      } else if (charType[i]=="upper case" && result) {
+        finalSelection = [].concat(lowerCase[Math.floor(Math.random() * lowerCase.length)]);
+        console.log(finalSelection);
+      } 
+        else if (charType[i] == "upper case" && result) {
         charSelection = charSelection.concat(upperCase);
         console.log(charSelection);
-      }
+        finalSelection = finalSelection.concat(upperCase[Math.floor(Math.random() * upperCase.length)]);
+        console.log(finalSelection);
 
-      else if (charType[i]=="number case" && result) {
+      }
+        else if (charType[i] == "number case" && result) {
         charSelection = charSelection.concat(numberCase);
         console.log(charSelection);
+        finalSelection = finalSelection.concat(upperCase[Math.floor(Math.random() * numberCase.length)]);
+        console.log(finalSelection);
       }
 
-      else if (charType[i]=="specialc ase" && result) {
+        else if (charType[i] == "specialc case" && result) {
         charSelection = charSelection.concat(specialCase);
         console.log(charSelection);
+        finalSelection = finalSelection.concat(upperCase[Math.floor(Math.random() * specialCase.length)]);
+        console.log(finalSelection);
       }
 
     }
-   
-    // concatinate 1 character from selected  into the garenteed array
-  }
+
+    finalString = finalSelection.toString();
+    console.log(finalString);
+
+    // This will create the password and include the garenteed characters
+    // for (let index = 0; index < passLength - finalSelection.length ; index++) {
+    //   const element = array[index];
+
+
+      
+
+      
+
+    }
+    // var
+    // if (charSelection.length > 0) {
+    //     return charSelection[Math.floor(Math.random() * charSelection.length)];
+    //   }
+
+              // ------ "return finalString" ------ //
+
+  
 
   passwordText.value = password;
 
@@ -72,32 +101,6 @@ generateBtn.addEventListener("click", writePassword);
 
 
 
-
-
-
-
-// if (window.confirm("Do you want to use " + charType[i] + " ?"));{
-//   console.log(variable);
-// }
-
-// var charType = ["lowercase", "uppercase", "numeric", "special"];
-// for (var i = 0; i < charType.length; i++) {
-
-//   var charSelect = window.prompt("Does the password require " + charType[i] + "?  Type: yes or no");
-//   console.log(charSelect);
-//   charSelect = charSelect.toUpperCase();
-
-//   if (charSelect === "YES") {
-//     //charUsed[]
-//     window.alert("The password will require " + charType[i] + ".");
-//   }
-//   else if (charSelect === "NO") {
-//     window.alert("The password will not require " + charType[i] + ".");
-//     charType.splice(i, 1);
-//   }
-//   else {
-//     return undefined;
-//   }
 
 
 
