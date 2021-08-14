@@ -8,7 +8,6 @@ var specialCase = ["!", "?", "@", "#", "$", "%", "^", "&", "*"];
 var numberCase = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 var charSelection = [];
 var finalSelection = [];
-//var finalString = "";
 
 // Write password to the #password input
 function writePassword() {
@@ -33,7 +32,7 @@ function writePassword() {
     /*  window ask the user what type of characters are needed and use resulting 
         boolean values to merge the character arrays to our final array that will 
         have values randomly selected from  */
-    var charType = ["lower case", "upper case", "number case", "specialc case"];
+    var charType = ["lower case", "upper case", "number case", "special case"];
     for (var i = 0; i < charType.length; i++) {
 
       var result
@@ -62,19 +61,20 @@ function writePassword() {
         console.log(finalSelection);
       }
 
-        else if (charType[i] === "specialc case" && result) {
+        else if (charType[i] === "special case" && result) {
         charSelection = charSelection.concat(specialCase);
         console.log(charSelection);
         finalSelection = finalSelection.concat(specialCase[Math.floor(Math.random() * specialCase.length)]);
         console.log(finalSelection);
       }
 
+        // makes sure that one of the character types have been selected
         else if (finalSelection.length === 0 && i === 3) {
         alert("Please select at least one of the characters for your password.");
         generatePassword();
       }
 
-      console.log(finalSelection);
+      //console.log(finalSelection);
 
     }
 
@@ -84,6 +84,7 @@ function writePassword() {
         console.log(finalSelection);
     }
     
+    // converts the array into a string and then eliminate the spaces
     finalSelection = finalSelection.join("");
     return finalSelection;
     
