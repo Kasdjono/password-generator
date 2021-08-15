@@ -6,7 +6,11 @@ var lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m"
 var upperCase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 var specialCase = ["!", "?", "@", "#", "$", "%", "^", "&", "*"];
 var numberCase = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+// Array used for randomly selecting the specified characters
 var charSelection = [];
+
+// Array used for storing the newly created password
 var finalSelection = [];
 
 // Write password to the #password input
@@ -20,12 +24,18 @@ function writePassword() {
     // Prompt the user to determine how many character are neede for the password
     var passLength = window.prompt("How many characters are needed for the passwrod (8-128)");
     console.log(passLength);
-    passLength = parseInt(passLength);
-    console.log(passLength);
 
-    while (passLength < 8 || passLength > 128) {
+    // The numVerify will be used to make sure that the user inputs a number and not a string
+    numVerify = isNaN(passLength);
+    console.log(numVerify);
+
+    // Verify that the password is entered correctly
+    while (passLength < 8 || passLength > 128 || numVerify) {
       var passLength = window.prompt("Remember, the password must be (8-128)");
       console.log(passLength);
+
+      numVerify = isNaN(passLength);
+      console.log(numVerify);
     }
 
 
@@ -39,7 +49,12 @@ function writePassword() {
       result = window.confirm("Do you want to use " + charType[i] + " values ?");
       console.log(result);
 
-      // concatinate  the  arrays together in order to create the final array
+
+      /* concatinate the selected character type arrays to the charSelection array, which will be used to
+          to pull random characters from for creating the code */
+      /* concatinate one random character from the selected character type into our finalSelection array
+          and I do this to ensure that none of the character tpyes will be left out when the randome
+          selection is performed on the charSelection array */
       if (charType[i] === "lower case" && result) {
         charSelection = charSelection.concat(lowerCase);
         console.log(charSelection);
@@ -74,9 +89,8 @@ function writePassword() {
         generatePassword();
       }
 
-      //console.log(finalSelection);
-
     }
+
 
     // This will create the password and include the garenteed characters
     for (var index = finalSelection.length ; index < (passLength); index++) {
@@ -84,6 +98,7 @@ function writePassword() {
         console.log(finalSelection);
     }
     
+
     // converts the array into a string and then eliminate the spaces
     finalSelection = finalSelection.join("");
     return finalSelection;
